@@ -33,30 +33,32 @@
                 border-bottom-right-radius: .3rem;
             }
         }
-        #create
-        {
+
+        #create {
             text-decoration: none;
         }
+
         .gradient-custom-3 {
-                        /* fallback for old browsers */
-                        background: #84fab0;
+            /* fallback for old browsers */
+            background: #84fab0;
 
-                        /* Chrome 10-25, Safari 5.1-6 */
-                        background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
 
-                        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                        background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
-                        }
-                        .gradient-custom-4 {
-                        /* fallback for old browsers */
-                        background: #84fab0;
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+        }
 
-                        /* Chrome 10-25, Safari 5.1-6 */
-                        background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+        .gradient-custom-4 {
+            /* fallback for old browsers */
+            background: #84fab0;
 
-                        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                        background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
-                        }
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+        }
     </style>
     <title>Login Page</title>
 </head>
@@ -64,7 +66,8 @@
 <body>
 
 
-    <section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <section class="vh-100 bg-image"
+        style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
@@ -80,31 +83,32 @@
                                         <h4 class="mt-1 mb-5 pb-1">TY BSc (CS)</h4>
                                     </div>
 
-                                    <form>
-                                        <p>Please login to your account</p>
+                                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                       
+                                    <p>Please login to your account</p>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Username:</label>
-                                            <input type="email" id="form2Example11" class="form-control"
+                                            <input type="text" id="form2Example11" class="form-control" name="user"
                                                 placeholder="Username Phone email" />
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22">Password:</label>
-                                            <input type="password" id="form2Example22" class="form-control"
+                                            <input type="password" id="form2Example22" class="form-control" name="pass"
                                                 placeholder="***************" />
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                type="button">Log
-                                                in</button>
-                                          
+                                            <input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                type="submit" name="sub" value="Login">
+
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Don't have an account?</p>
-                                            <button type="submit" class="btn btn-outline-danger" formaction="register.html"> Create new</button>
+                                            <button type="submit" class="btn btn-outline-danger"
+                                                formaction="register.php"> Create new</button>
                                         </div>
 
                                     </form>
@@ -141,6 +145,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
-</body>
 
+</body>
 </html>
+
