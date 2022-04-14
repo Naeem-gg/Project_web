@@ -93,7 +93,7 @@
                 <div class="col-xl-10">
                     <div class="card rounded-3 text-black">
                         <div class="row g-0">
-                            <div class="col-lg-6" id="left">
+                            <div class="col-lg-6 gradient-custom-3" id="left">
                                 <div class="card-body p-md-5 mx-md-4">
 
                                     <div class="text-center">
@@ -120,14 +120,14 @@
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                            <input class="btn btn-primary btn-block fa-lg gradient-custom-3 text-black mb-3"
                                                 type="submit" name="sub" value="Login">
 
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Don't have an account?</p>
-                                            <button type="submit" class="btn btn-outline-danger"
+                                            <button type="submit" class="btn btn-outline-success gradient-custom-3"
                                                 formaction="register.php"> Create new</button>
                                         </div>
 
@@ -137,8 +137,8 @@
                             </div>
         
 
-                                <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-                                    <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                <div class="col-lg-6 d-flex align-items-center gradient-custom-4">
+                                    <div class="text-black px-3 py-4 p-md-5 mx-md-4">
                                         <h4 class="mb-4">We're more than just a Web app </h4>
                                         <p class="small mb-0">A web-based application is any application that uses a website
                                             as the interface or front-end. Clients can without much of a stretch access the
@@ -179,7 +179,7 @@ if(isset($_POST['sub']))
         {
             if($user===$row[0] && $pass==$row[1])
             {
-                echo "<script>alert('login success');</script>";
+                // echo "<script>alert('login success');</script>";
                 
                 header("Location: something.html ");
                 break;
