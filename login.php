@@ -174,14 +174,14 @@ $pass=$_POST['pass'];
 
 if(isset($_POST['sub']))
 {
-        $file=fopen("userdetails.csv","r");
+        $file=fopen("users.csv","r") or die("FILE NOT FOUND");
         while(($row=fgetcsv($file))!==false)
         {
             if($user===$row[0] && $pass==$row[1])
             {
                 // echo "<script>alert('login success');</script>";
                 
-                header("Location: something.html ");
+                header("Location: something.php");
                 break;
             }
             else

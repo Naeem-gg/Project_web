@@ -89,7 +89,7 @@
 
                       $user=$_POST['user'];
                       $pass=$_POST['pass'];
-                      $file=fopen("userdetails.csv","r");
+                      $file=fopen("users.csv","r");
                       while(($row=fgetcsv($file))!==false)
                       {
                       if($row[0]===$user)
