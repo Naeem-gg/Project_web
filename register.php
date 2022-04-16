@@ -31,8 +31,7 @@
       background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
     }
 
-    span[name='sta'] 
-    {
+    span[name='sta'] {
       color: white;
     }
   </style>
@@ -56,97 +55,101 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg">Your Name:</label>
-                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="name" />
+                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="name" required />
                     <small>First name + Last name</small>
                   </div>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg"> Username:</label>
-                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="user" />
+                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="user" required />
                     <small>Choose a username</small>
                   </div>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg"> Phone Number:</label>
-                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="phone" />
+                    <input type="number" required id="form3Example1cg" class="form-control form-control-lg" name="phone" />
                     <small>Enter 10 digit number without country code</small>
                   </div>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3cg">Your Email</label>
-                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" name="email" />
+                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" name="email" required />
                     <small>example@gmail.com</small>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cg">Password</label>
-                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="pass" />
+                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="pass" required />
                   </div>
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cdg">Confirm password</label>
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="pass2" />
+                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="pass2" required />
                   </div>
                   <div>
                     <span name="sta">*</span>
                   </div>
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary active">
-                      <input type="radio" name="options" id="option1" autocomplete="off" checked> Male
+                      <input type="radio" name="options" value="Male" id="option1" autocomplete="off" required> Male
                     </label>
                     <label class="btn btn-secondary">
-                      <input type="radio" name="options" id="option2" autocomplete="off"> Female
+                      <input type="radio" name="options" value="Female" id="option2" autocomplete="off"> Female
                     </label>
 
                   </div><br><br>
                   <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                    <input class="form-check-input me-2" type="checkbox" value="terms_accepted" required id="form2Example3cg" />
                     <label class="form-check-label" for="form2Example3g">
                       I agree all statements in <a href="terms.html" class="text-body"><u>Terms of service</u></a>
                     </label>
                   </div>
                   <p>
                     <?php
-                    if (isset($_POST['sub'])) {
-
-                      $user = $_POST['user'];
-                      $pass = $_POST['pass'];
-                      $email = $_POST['name'];
-                      $name = $_POST['email'];
-                      $phone=$_POST['phone'];
-                      $gender = $_POST['options'];
-                      $whole_data = array($name, $user, $email, $pass, $gender);
-                      $file = fopen("users.csv", "r");
-                      while (($row = fgetcsv($file)) !== false) 
-                      {
-                        if ($row[0] === $user) 
-                        {
-                          die("<div class='alert alert-danger' role='alert'>
-                          Username '$user' is already exists. 
+if (isset($_POST['sub'])) {
+    // print_r($_POST);
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+    $pass2=$_POST['pass2'];
+    $email = $_POST['name'];
+    $name = $_POST['email'];
+    $phone = $_POST['phone'];
+    $gender = $_POST['options'];
+    $whole_data = array($name, $user, $email, $pass, $gender, $phone);
+    $file = fopen("users.csv", "r");
+    while (($row = fgetcsv($file)) !== false) {
+        if ($row[0] === $user) {
+            die("<div class='d-flex justify-content-center'><input type='submit' class='btn btn-success btn-block btn-lg gradient-custom-4 text-body' value='Try Again'> </div><div class='alert alert-danger' role='alert'>
+                          Username '$user' is already exists.
                           </div>");
-                        }
-                      }
-                      if($pass!==$pass2)
-                      {
-                        die("<div class='alert alert-danger' role='alert'>
-                        Password doesn't match. 
-                        </div>");
-                        
-                        echo "<div class='alert alert-success' role='alert'>
-                        $user registration successfull!
-                        </div><a href=login.php> click here to login</a>";
-                        $fileappend = fopen("users.csv", "a");
-                        $data = array($_POST['user'], $_POST['pass']);
-                        fputcsv($fileappend, $data) or die("ERROR");
-                        //  sleep(0.5);
-                        $mainfile = fopen("registration_details.csv", "a");
-                        fputcsv($mainfile, $whole_data) or die("ERROR! unable to write data in $mainfile");
-                        fclose($file);
-                        fclose($fileappend);
-                        fclose($mainfile);
-                        //  header("Location:homepage.html");
-                      }
-                    }
-                    ?>
+        }
+    }
+    if ($pass !== $pass2) {
+
+        print_r($_POST);
+        // echo "$pass<br>$pass2";
+        echo ("<div class='d-flex justify-content-center'><input type='submit' class='btn btn-success btn-block btn-lg gradient-custom-4 text-body' value='Try Again'> </div><div class='alert alert-danger' role='alert'>
+                        Password doesn't match.
+                        </div> ");
+
+    } else {
+
+        echo "<div class='alert alert-success' role='alert'>
+                    $user registration successfull!
+                    </div><a href=login.php> click here to login</a>";
+        $fileappend = fopen("users.csv", "a");
+        $data = array($_POST['user'], $_POST['pass']);
+        fputcsv($fileappend, $data) or die("ERROR");
+        //  sleep(0.5);
+        $mainfile = fopen("registration_details.csv", "a");
+        fputcsv($mainfile, $whole_data) or die("ERROR! unable to write data in $mainfile");
+        fclose($file);
+        fclose($fileappend);
+        fclose($mainfile);
+        //  header("Location:homepage.html");
+
+    }
+}
+?>
                   </p>
-                 
+
                   <div class="d-flex justify-content-center">
                     <input type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" value="Register" name="sub">
                   </div>
@@ -154,9 +157,9 @@
                   <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="login.php" class="fw-bold text-body"><u>Login here</u></a></p>
 
                 </form>
-<script>
-  
-</script>
+                <script>
+
+                </script>
               </div>
             </div>
           </div>
