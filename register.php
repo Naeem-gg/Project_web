@@ -31,7 +31,21 @@
       /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
     }
+    #sta
+    {
+      color:white;
+    }
   </style>
+  <script>
+      var pass=document.getElementsByName('pass');
+      var pass2=document.getElementsByName('pass2');
+      if(pass!==pass2)
+      {
+        // document.getElementById('sta').innerHTML="Password doesn't match";
+        // document.getElementById('sta').style.color="red";
+        alert("password doen't match");
+      }
+  </script>
   <title>New Register</title>
 </head>
 
@@ -52,7 +66,7 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg">Your Name:</label>
-                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="name" />
                     <small>First name + Last name</small>
                   </div>
                   <div class="form-outline mb-4">
@@ -62,7 +76,7 @@
                   </div>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3cg">Your Email</label>
-                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                    <input type="email" id="form3Example3cg" class="form-control form-control-lg"  name="email" />
                     <small>example@gmail.com</small>
                   </div>
 
@@ -73,9 +87,11 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="pass2" />
                   </div>
-
+                      <div id="sta">
+                          *
+                      </div>          
                   <div class="form-check d-flex justify-content-center mb-5">
                     <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
                     <label class="form-check-label" for="form2Example3g">
@@ -89,6 +105,9 @@
 
                       $user=$_POST['user'];
                       $pass=$_POST['pass'];
+                      $email=$_POST['name'];
+                      $name=$_POST['email'];
+                      $whole_data=array($name,$user,$email,$pass);
                       $file=fopen("users.csv","r");
                       while(($row=fgetcsv($file))!==false)
                       {
