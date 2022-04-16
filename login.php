@@ -117,7 +117,7 @@ ob_start();
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Username:</label>
-                                            <input type="text" id="form2Example11" class="form-control" name="user" placeholder="Username Phone email" />
+                                            <input type="text" id="form2Example11" class="form-control" name="user" placeholder="Username Phone email"  />
                                         </div>
 
                                         <div class="form-outline mb-4">
@@ -129,9 +129,9 @@ ob_start();
                                             <input class="btn btn-primary btn-block fa-lg gradient-custom-3 text-black mb-3" type="submit" name="sub" value="Login">
 
                                         </div>
-                                        
-                                           
-                                        
+
+
+
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Don't have an account?</p>
@@ -174,31 +174,31 @@ ob_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
     <?php
-    $user = $_POST['user'];
-    $pass = $_POST['pass'];
+$user = $_POST['user'];
+$pass = $_POST['pass'];
 
-    if (isset($_POST['sub'])) {
-        $file = fopen("users.csv", "r") or die("FILE NOT FOUND");
-        $flag = 1;
-        while (!feof($file)) {
-            $row = fgetcsv($file);
-            // print_r($row);
+if (isset($_POST['sub'])) {
+    $file = fopen("registration_details.csv", "r") or die("FILE NOT FOUND");
+    
+    while (!feof($file)) {
+        $flag = 0;
+        $row = fgetcsv($file);
+        // print_r($row);
 
-            if ($user === $row[0] && $pass === $row[1]) {
-                $flag = 2;
-                header("Location: homepage.html");
-            }
+        if (($user === $row[0] || $user === $row[1] || $user === $row[5]) && $pass === $row[3]) {
+            $flag = 1;
+            header("Location: homepage.html");
+            break;
         }
-        if ($flag == 1) {
-            echo "<script>alert('dekhke type kr');</script>";
-        }
-
-        fclose($file);
+    }
+    if ($flag == 0) {
+        echo "<script>alert('Invalid Credentials entered');</script>";
     }
 
+    fclose($file);
+}
 
-
-    ?>
+?>
 </body>
 
 </html>

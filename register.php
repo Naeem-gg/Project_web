@@ -112,7 +112,7 @@ if (isset($_POST['sub'])) {
     $name = $_POST['email'];
     $phone = $_POST['phone'];
     $gender = $_POST['options'];
-    $whole_data = array($name, $user, $email, $pass, $gender, $phone);
+    
     $file = fopen("users.csv", "r");
     while (($row = fgetcsv($file)) !== false) {
         if ($row[0] === $user) {
@@ -133,12 +133,13 @@ if (isset($_POST['sub'])) {
 
         echo "<div class='alert alert-success' role='alert'>
                     $user registration successfull!
-                    </div><a href=login.php> click here to login</a>";
+                    </div><a align='center' href=login.php> click here to login</a>";
         $fileappend = fopen("users.csv", "a");
         $data = array($_POST['user'], $_POST['pass']);
         fputcsv($fileappend, $data) or die("ERROR");
         //  sleep(0.5);
         $mainfile = fopen("registration_details.csv", "a");
+        $whole_data = array($name, $user, $email, $pass, $gender, $phone);
         fputcsv($mainfile, $whole_data) or die("ERROR! unable to write data in $mainfile");
         fclose($file);
         fclose($fileappend);
