@@ -9,6 +9,15 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <style>
+    body {
+            background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: "Open Sans", sans-serif;
+            color: #333333;
+
+        }
     .gradient-custom-3 {
       /* fallback for old browsers */
       background: #84fab0;
@@ -41,12 +50,12 @@
 
 <body>
   <section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="mask d-flex align-items-center h-100%">
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
-              <div class="card-body p-5">
+              <div class="card-body p-5 gradient-custom-3">
                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
 
@@ -65,6 +74,7 @@
                   </div>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example1cg"> Phone Number:</label>
+                    <!-- ^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$ -->
                     <input type="number" required id="form3Example1cg" class="form-control form-control-lg" name="phone" />
                     <small>Enter 10 digit number without country code</small>
                   </div>
@@ -81,11 +91,33 @@
 
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example4cdg">Confirm password</label>
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="pass2" required />
+                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="pass2" onkeyup="y();" required />
                   </div>
                   <div>
                     <span name="sta">*</span>
                   </div>
+                  <script>
+                 function y() {
+                      
+                      var a=document.getElementById('form3Example4cg').value;
+                      var b=document.getElementById('form3Example4cdg').value;
+
+
+                    if (a === b) {
+                        document.getElementById('sta').innerHTML = "Your Passward Is Right.";
+                        document.getElementById('sta').style.color = "green";
+
+                    }
+                    else {
+                        document.getElementById('sta').innerHTML = "Your Passward Is Wrong.";
+                        document.getElementById('sta').style.color = "red";
+
+                    }
+                    // alert(a+b);
+                }
+               </script>
+
+
                   <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-secondary active">
                       <input type="radio" name="options" value="Male" id="option1" autocomplete="off" required> Male
