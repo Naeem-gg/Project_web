@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -41,13 +44,13 @@
 
 <body>
   <section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-      <div class="container h-100">
+    <div class="mask d-flex align-items-center h-100% gradient-custom-3">
+      <div class="container h-100%">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5">
-                <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                <h2 class="text-uppercase text-center mb-5">Register Now</h2>
 
 
 
@@ -105,15 +108,15 @@
                     <?php
 if (isset($_POST['sub'])) {
     // print_r($_POST);
-    $user = $_POST['user'];
-    $pass = $_POST['pass'];
-    $pass2=$_POST['pass2'];
-    $email = $_POST['name'];
-    $name = $_POST['email'];
-    $phone = $_POST['phone'];
-    $gender = $_POST['options'];
+    $_SESSION['user'] = $user = $_POST['user'];
+    $_SESSION['pass'] = $pass = $_POST['pass'];
+    $_SESSION['pass2'] = $pass2=$_POST['pass2'];
+    $_SESSION['email'] = $name = $_POST['name'];
+    $_SESSION['name'] = $email = $_POST['email'];
+    $_SESSION['phone'] = $phone = $_POST['phone'];
+    $_SESSION['gender'] = $gender = $_POST['options'];
     
-    $file = fopen("users.csv", "r");
+    $file = fopen("user.csv", "r");
     while (($row = fgetcsv($file)) !== false) {
         if ($row[0] === $user) {
             die("<div class='d-flex justify-content-center'><input type='submit' class='btn btn-success btn-block btn-lg gradient-custom-4 text-body' value='Try Again'> </div><div class='alert alert-danger' role='alert'>
@@ -134,11 +137,11 @@ if (isset($_POST['sub'])) {
         echo "<div class='alert alert-success' role='alert'>
                     $user registration successfull!
                     </div><a align='center' href=login.php> click here to login</a>";
-        $fileappend = fopen("users.csv", "a");
+        $fileappend = fopen("user.csv", "a") or die("ERROR! can't open file user.csv");
         $data = array($_POST['user'], $_POST['pass']);
-        fputcsv($fileappend, $data) or die("ERROR");
+        fputcsv($fileappend, $data) or die("ERROR! can't write on file user.csv");
         //  sleep(0.5);
-        $mainfile = fopen("registration_details.csv", "a");
+        $mainfile = fopen("registration.csv", "a");
         $whole_data = array($name, $user, $email, $pass, $gender, $phone);
         fputcsv($mainfile, $whole_data) or die("ERROR! unable to write data in $mainfile");
         fclose($file);

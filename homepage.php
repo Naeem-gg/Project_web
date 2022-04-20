@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,7 +14,7 @@
     <title>Home</title>
   </head>
   <body>
-    <h1>Login Successfull</h1>
+    <h1><?php echo $_SESSION['user']; ?> Logged in successfull</h1>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -176,9 +177,9 @@ ob_start();
     <?php
 
 if (isset($_POST['sub'])) {
-    $user = $_POST['user'];
-    $pass = $_POST['pass'];
-    $file = fopen("registration_details.csv", "r") or die("FILE NOT FOUND");
+    $_SESSION['user'] = $user = $_POST['user'];
+    $_SESSION['pass'] = $pass = $_POST['pass'];
+    $file = fopen("registration.csv", "r") or die("FILE NOT FOUND");
     
     while (!feof($file)) {
         $flag = 0;
@@ -187,7 +188,7 @@ if (isset($_POST['sub'])) {
 
         if (($user === $row[0] || $user === $row[1] || $user === $row[5]) && $pass === $row[3]) {
             $flag = 1;
-            header("Location: homepage.html");
+            header("Location: homepage.php");
             break;
         }
     }
